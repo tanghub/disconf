@@ -95,7 +95,7 @@ $('#myfilerar').change(function (evt) {
 
 var options = {
 
-    url: '/api/web/config/file',
+    url: Context.api + '/api/web/config/file',
     beforeSubmit: validate2,
     beforeSend: function (xhr) {
         $("#myfilerar").bind("updatecomplete", function () {
@@ -237,7 +237,7 @@ $("#uploadChoice").on(
 
                     $.ajax({
                         type: "POST",
-                        url: "/api/web/config/filetext",
+                        url: Context.api + "/api/web/config/filetext",
                         data: {
                             "appId": appId,
                             "envId": envId,

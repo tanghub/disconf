@@ -4,7 +4,7 @@
     $("#signout").on("click", function () {
         $.ajax({
             type: "GET",
-            url: "/api/account/signout"
+            url: Context.api + "/api/account/signout"
         }).done(function (data) {
             if (data.success === "true") {
                 VISITOR = {};

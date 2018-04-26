@@ -13,7 +13,7 @@ function fetchFileData() {
     //
     $.ajax({
         type: "GET",
-        url: "/api/web/config/" + configId
+        url: Context.api + "/api/web/config/" + configId
     }).done(
         function (data) {
             if (data.success === "true") {
@@ -101,7 +101,7 @@ $('#myfilerar').change(function (evt) {
 // 提交
 var options = {
 
-    url: '/api/web/config/file/' + configId,
+    url: Context.api + '/api/web/config/file/' + configId,
     beforeSubmit: validate,
     beforeSend: function (xhr) {
 
@@ -225,7 +225,7 @@ $("#uploadChoice").on('click', 'li a', function () {
 
             $.ajax({
                 type: "PUT",
-                url: "/api/web/config/filetext/" + configId,
+                url: Context.api + "/api/web/config/filetext/" + configId,
                 data: {
                     "fileContent": fileContent
                 }

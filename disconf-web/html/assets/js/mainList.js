@@ -12,7 +12,7 @@
     //
     $.ajax({
         type: "GET",
-        url: "/api/app/list"
+        url: Context.api + "/api/app/list"
     }).done(
         function (data) {
             if (data.success === "true") {
@@ -44,7 +44,7 @@
     //
     function fetchVersion(appId, envId) {
 
-        var base_url = "/api/web/config/versionlist?appId=" + appId;
+        var base_url = Context.api + "/api/web/config/versionlist?appId=" + appId;
         url = base_url;
         if (envId != -1) {
             url = base_url + "&envId=" + envId;
@@ -83,7 +83,7 @@
     //
     $.ajax({
         type: "GET",
-        url: "/api/env/list"
+        url: Context.api + "/api/env/list"
     }).done(
         function (data) {
             if (data.success === "true") {
@@ -128,13 +128,13 @@
 
         $("#batch_download").attr(
             'href',
-                "/api/web/config/downloadfilebatch?appId=" + appId + "&envId="
+            Context.api + "/api/web/config/downloadfilebatch?appId=" + appId + "&envId="
                 + envId + "&version=" + version);
 
         $("#mainlist_error").hide();
         var parameter = ""
 
-        url = "/api/web/config/list";
+        url = Context.api + "/api/web/config/list";
         if (appId == null && envId == null && version == null) {
 
         } else {
@@ -186,15 +186,15 @@
                 + item.configId
                 + '" style="cursor: pointer; cursor: hand; " ><i title="删除" class="icon-remove"></i></a>';
             if (item.type == "配置文件") {
-                link = '<a target="_blank" href="modifyFile.html?configId='
+                link = '<a target="_blank" href=' + Context.web + '"/modifyFile.html?configId='
                     + item.configId
                     + '"><i title="修改" class="icon-edit"></i></a>';
             } else {
-                link = '<a target="_blank" href="modifyItem.html?configId='
+                link = '<a target="_blank" href="' + Context.web + '/modifyItem.html?configId='
                     + item.configId
                     + '"><i title="修改" class="icon-edit"></i></a>';
             }
-            var downloadlink = '<a href="/api/web/config/download/'
+            var downloadlink = '<a href="' + Context.api + '/api/web/config/download/'
                 + +item.configId
                 + '"><i title="下载" class="icon-download-alt"></i></a>';
 
@@ -265,7 +265,7 @@
         //
         $.ajax({
             type: "GET",
-            url: "/api/web/config/" + configId
+            url: Context.api + "/api/web/config/" + configId
         }).done(
             function (data) {
                 if (data.success === "true") {
@@ -289,7 +289,7 @@
         //
         $.ajax({
             type: "GET",
-            url: "/api/web/config/zk/" + configId
+            url: Context.api + "/api/web/config/zk/" + configId
         }).done(
             function (data) {
                 if (data.success === "true") {
@@ -344,7 +344,7 @@
 
         $.ajax({
             type: "DELETE",
-            url: "/api/web/config/" + id
+            url: Context.api + "/api/web/config/" + id
         }).done(function (data) {
             if (data.success === "true") {
                 fetchMainList();
@@ -385,7 +385,7 @@
             return;
         }
 
-        var base_url = "/api/zoo/zkdeploy?appId=" + appId + "&envId=" + envId
+        var base_url = Context.api + "/api/zoo/zkdeploy?appId=" + appId + "&envId=" + envId
             + "&version=" + version
 
         $.ajax({

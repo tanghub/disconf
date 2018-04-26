@@ -1,6 +1,6 @@
 (function ($) {
 
-    $("#indexMain").attr("href", "/");
+    $("#indexMain").attr("href", Context.web);
 
     getSession2Redirect();
 

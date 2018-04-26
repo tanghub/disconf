@@ -18,7 +18,7 @@ $("#item_submit").on("click", function (e) {
     }
     $.ajax({
         type: "PUT",
-        url: "/api/account/password",
+        url: Context.api + "/api/account/password",
         data: {
             "old_password": old_password,
             "new_password": new_password,

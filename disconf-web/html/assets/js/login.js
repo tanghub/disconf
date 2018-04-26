@@ -1,6 +1,6 @@
 (function ($) {
 
-    $("#indexMain").attr("href", "/");
+    $("#indexMain").attr("href", Context.web);
 
     getSession2Redirect();
 
@@ -20,7 +20,7 @@
 
         $.ajax({
             type: "POST",
-            url: "/api/account/signin",
+            url: Context.api + "/api/account/signin",
             data: {
                 "name": email,
                 "password": pwd,
@@ -31,7 +31,7 @@
                 window.VISITOR = data.result.visitor;
                 $("#loginError").hide();
                 headShowInit();
-                window.location.href = "/main.html";
+                window.location.href = Context.web + "/main.html";
             } else {
                 Util.input.whiteError($("#loginError"), data);
                 $("#loginError").show();

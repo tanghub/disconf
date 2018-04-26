@@ -9,7 +9,7 @@
     //
     function fetchConfigUsage() {
 
-        url = "/api/usage/list";
+        url = Context.api + "/api/usage/list";
 
         $.ajax({
             type: "GET",

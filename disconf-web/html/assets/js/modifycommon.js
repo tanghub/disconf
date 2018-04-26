@@ -5,7 +5,7 @@ function fetchItems(appId, envId, version, curConfigId) {
 
     var parameter = ""
 
-    url = "/api/web/config/simple/list";
+    url = Context.api + "/api/web/config/simple/list";
     url += "?";
     url += "appId=" + appId + "&";
     url += "envId=" + envId + "&";

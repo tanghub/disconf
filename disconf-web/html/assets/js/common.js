@@ -1,6 +1,10 @@
 // 初始入口
 (function () {
     window.VISITOR = {};
+    window.Context =  {
+        web:"/config",
+        api:"/config-api"
+    };
 })();
 
 //
@@ -24,9 +28,9 @@ function headShowInit() {
 //
 function loginActions() {
     if (VISITOR.id) {
-        $("#brand_url").attr("href", "/main.html");
+        $("#brand_url").attr("href", Context.web + "/main.html");
     } else {
-        $("#brand_url").attr("href", "/");
+        $("#brand_url").attr("href", Context.web);
     }
 }
 
@@ -36,17 +40,17 @@ function loginActions() {
 function getSession() {
     $.ajax({
         type: "GET",
-        url: "/api/account/session",
+        url: Context.api + "/api/account/session",
         timeout: 3000 // 3s timeout
     }).done(function (data) {
         if (data.success === "true") {
             window.VISITOR = data.result.visitor;
             headShowInit();
         } else {
-            window.location.href = "/login.html";
+            window.location.href = Context.web + "/login.html";
         }
     }).fail(function (xmlHttpRequest, textStatus) {
-        window.location.href = "/login.html";
+        window.location.href = Context.web + "/login.html";
     });
 }
 
@@ -54,10 +58,10 @@ function getSession() {
 function getSession2Redirect() {
     $.ajax({
         type: "GET",
-        url: "/api/account/session"
+        url: Context.api + "/api/account/session"
     }).done(function (data) {
         if (data.success === "true") {
-            window.location.href = "/main.html";
+            window.location.href = Context.web + "/main.html";
         } else {
         }
     });
