@@ -186,7 +186,7 @@
                 + item.configId
                 + '" style="cursor: pointer; cursor: hand; " ><i title="删除" class="icon-remove"></i></a>';
             if (item.type == "配置文件") {
-                link = '<a target="_blank" href=' + Context.web + '"/modifyFile.html?configId='
+                link = '<a target="_blank" href="' + Context.web + '/modifyFile.html?configId='
                     + item.configId
                     + '"><i title="修改" class="icon-edit"></i></a>';
             } else {
