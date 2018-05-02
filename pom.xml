@@ -26,7 +26,7 @@
     <properties>
         <!-- 模块版本号 -->
         <disconf-core.version>2.6.36</disconf-core.version>
-        <disconf-client.version>2.6.36</disconf-client.version>
+        <disconf-client.version>2.7.0-SNAPSHOT</disconf-client.version>
         <disconf-client-spring.version>2.6.36</disconf-client-spring.version>
 
         <!-- Spring項目配置 -->
@@ -508,7 +508,7 @@
 
             <dependency>
                 <groupId>com.github.tomakehurst</groupId>
-                <artifactId>wiremock</artifactId>
+                    <artifactId>wiremock</artifactId>
                 <version>1.46</version>
                 <scope>test</scope>
                 <!-- Include this if you have dependency conflicts for Guava,
@@ -679,6 +679,7 @@
                 <version>3.1.0</version>
             </plugin>
 
+            <!--
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
@@ -691,7 +692,7 @@
                     </execution>
                 </executions>
             </plugin>
-
+            -->
         </plugins>
     </build>
 
@@ -726,6 +727,7 @@
         <profile>
             <id>release</id>
             <distributionManagement>
+                <!--
                 <snapshotRepository>
                     <id>nexus-release</id>
                     <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
@@ -734,6 +736,17 @@
                     <id>nexus-release</id>
                     <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
                 </repository>
+                -->
+                <repository>
+                    <id>nexus</id>
+                    <name>Releases</name>
+                    <url>http://199.168.18.240/nexus/repository/maven-releases/</url>
+                </repository>
+                <snapshotRepository>
+                    <id>nexus</id>
+                    <name>Snapshot</name>
+                    <url>http://199.168.18.240/nexus/repository/maven-snapshots/</url>
+                </snapshotRepository>
             </distributionManagement>
             <build>
                 <plugins>
@@ -751,7 +764,7 @@
                             </execution>
                         </executions>
                     </plugin>
-                    <!-- Javadoc -->
+                    <!-- Javadoc
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
@@ -765,6 +778,7 @@
                             </execution>
                         </executions>
                     </plugin>
+                    -->
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>

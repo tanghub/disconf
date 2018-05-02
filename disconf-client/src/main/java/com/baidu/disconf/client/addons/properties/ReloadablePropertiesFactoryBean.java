@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import com.baidu.disconf.client.common.constants.Constants;
 import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,6 +35,7 @@ public class ReloadablePropertiesFactoryBean extends PropertiesFactoryBean imple
     protected static final Logger log = LoggerFactory.getLogger(ReloadablePropertiesFactoryBean.class);
 
     private Resource[] locations;
+    private Resource[] groupLocations;
     private long[] lastModified;
     private List<IReloadablePropertiesListener> preListeners;
 
@@ -48,9 +50,18 @@ public class ReloadablePropertiesFactoryBean extends PropertiesFactoryBean imple
         setLocations(list);
     }
 
+    public void setGroupLocations(List<String> fileNames) {
+        setLocations(fileNames, Constants.CONFIG_TARGET_GROUP);
+
+    }
+
+    public void setLocations(List<String> fileNames) {
+        setLocations(fileNames, Constants.CONFIG_TARGET_APP);
+    }
+
     /**
      */
-    public void setLocations(List<String> fileNames) {
+    public void setLocations(List<String> fileNames, String configTarget) {
 
         List<Resource> resources = new ArrayList<Resource>();
         for (String filename : fileNames) {
@@ -63,7 +74,7 @@ public class ReloadablePropertiesFactoryBean extends PropertiesFactoryBean imple
             //
             // register to disconf
             //
-            DisconfMgr.getInstance().reloadableScan(realFileName);
+            DisconfMgr.getInstance().reloadableScan(realFileName, configTarget);
 
             //
             // only properties will reload

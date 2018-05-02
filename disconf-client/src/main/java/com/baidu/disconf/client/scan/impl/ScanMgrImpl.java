@@ -114,4 +114,9 @@ public class ScanMgrImpl implements ScanMgr {
         StaticScannerNonAnnotationFileMgrImpl.scanData2Store(fileName);
     }
 
+    @Override
+    public void reloadableGroupScan(String fileName) throws Exception {
+
+        StaticScannerNonAnnotationFileMgrImpl.scanGroupData2Store(fileName);
+    }
 }

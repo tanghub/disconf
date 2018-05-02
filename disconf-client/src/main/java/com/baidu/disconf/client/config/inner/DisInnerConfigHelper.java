@@ -49,6 +49,13 @@ public class DisInnerConfigHelper {
         LOGGER.info(
                 "SERVER " + DisClientConfig.CONF_SERVER_HOST_NAME + ": " + DisClientConfig.getInstance().getHostList());
 
+        // 分组
+        LOGGER.info(
+                "GROUP " + DisClientConfig.GROUP_NAME + ": " + DisClientConfig.getInstance().GROUP);
+
+        LOGGER.info(
+                "GROUP VERSION" + DisClientConfig.GROUP_VERSION + ": " + DisClientConfig.getInstance().GROUP_VER);
+
         //
         // 版本
 

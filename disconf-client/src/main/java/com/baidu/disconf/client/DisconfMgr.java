@@ -2,6 +2,7 @@ package com.baidu.disconf.client;
 
 import java.util.List;
 
+import com.baidu.disconf.client.common.constants.Constants;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -171,7 +172,7 @@ public class DisconfMgr implements ApplicationContextAware {
     /**
      * reloadable config file scan, for xml config
      */
-    public synchronized void reloadableScan(String fileName) {
+    public synchronized void reloadableScan(String fileName, String configTarget) {
 
         if (!isFirstInit) {
             return;
@@ -183,7 +184,11 @@ public class DisconfMgr implements ApplicationContextAware {
                 if (!DisClientConfig.getInstance().getIgnoreDisconfKeySet().contains(fileName)) {
 
                     if (scanMgr != null) {
-                        scanMgr.reloadableScan(fileName);
+                        if (Constants.CONFIG_TARGET_GROUP.equals(configTarget)) {
+                            scanMgr.reloadableGroupScan(fileName);
+                        } else {
+                            scanMgr.reloadableScan(fileName);
+                        }
                     }
 
                     if (disconfCoreMgr != null) {

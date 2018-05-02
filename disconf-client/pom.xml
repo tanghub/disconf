@@ -271,11 +271,23 @@
         <connection>scm:git:git@github.com:knightliao/disconf</connection>
         <tag>disconf-client</tag>
     </scm>
-
+    <distributionManagement>
+        <repository>
+            <id>nexus</id>
+            <name>Releases</name>
+            <url>http://199.168.18.240/nexus/repository/maven-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>nexus</id>
+            <name>Snapshot</name>
+            <url>http://199.168.18.240/nexus/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
     <profiles>
         <profile>
             <id>release</id>
             <distributionManagement>
+                <!--
                 <snapshotRepository>
                     <id>nexus-release</id>
                     <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
@@ -284,6 +296,17 @@
                     <id>nexus-release</id>
                     <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
                 </repository>
+                -->
+                <repository>
+                    <id>nexus</id>
+                    <name>Releases</name>
+                    <url>http://199.168.18.240/nexus/repository/maven-releases/</url>
+                </repository>
+                <snapshotRepository>
+                    <id>nexus</id>
+                    <name>Snapshot</name>
+                    <url>http://199.168.18.240/nexus/repository/maven-snapshots/</url>
+                </snapshotRepository>
             </distributionManagement>
             <build>
                 <plugins>
@@ -301,7 +324,7 @@
                             </execution>
                         </executions>
                     </plugin>
-                    <!-- Javadoc -->
+                    <!-- Javadoc
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
@@ -315,6 +338,7 @@
                             </execution>
                         </executions>
                     </plugin>
+                    -->
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>

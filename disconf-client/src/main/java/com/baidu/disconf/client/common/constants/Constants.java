@@ -17,4 +17,8 @@ public class Constants {
      */
     public static final String HOST_PROPERTIES_KEY = "VCAP_APP_HOST";
     public static final String PORT_PROPERTIES_KEY = "VCAP_APP_PORT";
+
+
+    public static final String CONFIG_TARGET_APP = "APP";
+    public static final String CONFIG_TARGET_GROUP = "GROUP";
 }

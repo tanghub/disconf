@@ -8,6 +8,7 @@ import com.baidu.disconf.client.common.constants.SupportFileTypeEnum;
 import com.baidu.disconf.client.common.model.DisConfCommonModel;
 import com.baidu.disconf.client.common.model.DisconfCenterBaseModel;
 import com.baidu.disconf.client.common.model.DisconfCenterFile;
+import com.baidu.disconf.client.config.DisClientConfig;
 import com.baidu.disconf.client.config.DisClientSysConfig;
 import com.baidu.disconf.client.scan.inner.statically.StaticScannerMgr;
 import com.baidu.disconf.client.scan.inner.statically.model.ScanStaticModel;
@@ -45,6 +46,14 @@ public class StaticScannerNonAnnotationFileMgrImpl extends StaticScannerMgrImplB
         DisconfStoreProcessorFactory.getDisconfStoreFileProcessor().transformScanData(disconfCenterBaseModel);
     }
 
+    public static void scanGroupData2Store(String fileName) {
+
+        DisconfCenterBaseModel disconfCenterBaseModel =
+                StaticScannerNonAnnotationFileMgrImpl.getDisconfGroupFile(fileName);
+
+        DisconfStoreProcessorFactory.getDisconfStoreFileProcessor().transformScanData(disconfCenterBaseModel);
+    }
+
     /**
      *
      */
@@ -69,9 +78,23 @@ public class StaticScannerNonAnnotationFileMgrImpl extends StaticScannerMgrImplB
     }
 
     /**
-     *
+     * 获取应用配置文件
      */
     public static DisconfCenterBaseModel getDisconfCenterFile(String fileName) {
+        return getDisconfFile(fileName, "", "", "");
+    }
+
+    /**
+     * 获取分组配置文件
+     * @param fileName
+     * @return
+     */
+    public static DisconfCenterBaseModel getDisconfGroupFile(String fileName) {
+        DisClientConfig config = DisClientConfig.getInstance();
+        return getDisconfFile(fileName, config.GROUP, config.ENV, config.GROUP_VER);
+    }
+
+    private static DisconfCenterBaseModel getDisconfFile(String fileName, String app, String env, String version) {
 
         DisconfCenterFile disconfCenterFile = new DisconfCenterFile();
 
@@ -89,7 +112,7 @@ public class StaticScannerNonAnnotationFileMgrImpl extends StaticScannerMgrImplB
 
         //
         // disConfCommonModel
-        DisConfCommonModel disConfCommonModel = makeDisConfCommonModel("", "", "");
+        DisConfCommonModel disConfCommonModel = makeDisConfCommonModel(app, env, version);
         disconfCenterFile.setDisConfCommonModel(disConfCommonModel);
 
         // Remote URL
@@ -103,5 +126,4 @@ public class StaticScannerNonAnnotationFileMgrImpl extends StaticScannerMgrImplB
 
         return disconfCenterFile;
     }
-
 }

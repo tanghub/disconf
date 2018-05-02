@@ -89,6 +89,22 @@ public final class DisClientConfig {
     private List<String> hostList;
 
     /**
+     * 配置分组
+     * 以单独app方式存在
+     * <P>
+     *    ZK url:{group}_{group_version}_{app_env}
+     * </P>
+     */
+    public static final String GROUP_NAME = "disconf.group_name";
+    @DisInnerConfigAnnotation(name = DisClientConfig.GROUP_NAME)
+    public String GROUP;
+
+
+    public static final String GROUP_VERSION = "disconf.group_version";
+    @DisInnerConfigAnnotation(name = DisClientConfig.GROUP_VERSION)
+    public String GROUP_VER;
+
+    /**
      * app
      *
      * @author

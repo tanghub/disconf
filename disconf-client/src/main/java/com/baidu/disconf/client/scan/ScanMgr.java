@@ -24,4 +24,6 @@ public interface ScanMgr {
      * @throws Exception
      */
     void reloadableScan(String fileName) throws Exception;
+
+    void reloadableGroupScan(String fileName) throws Exception;
 }
